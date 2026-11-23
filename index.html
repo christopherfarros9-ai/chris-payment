@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chris'cy Store - Official Payment Page</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body {
+      background-color: #0b0c14;
+      background-image: linear-gradient(to bottom, rgba(11, 12, 20, 0.55), rgba(11, 12, 20, 0.96) 45%), url('bg.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 36px 16px;
+    }
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 3px solid #3b82f6;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      object-fit: cover;
+      margin-bottom: 14px;
+    }
+    .store-name {
+      font-size: 24px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .verified {
+      background: #3b82f6;
+      color: white;
+      font-size: 12px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .subtitle {
+      font-size: 11px;
+      color: #9ca3af;
+      letter-spacing: 2.5px;
+      margin-top: 6px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+    .card {
+      background: rgba(22, 24, 38, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .card-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+    .card-desc { font-size: 12.5px; color: #9ca3af; margin-bottom: 16px; }
+    .qris-box {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 8px;
+      margin-bottom: 16px;
+    }
+    .qris-box img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .btn {
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #4f46e5, #6366f1);
+      color: #ffffff;
+    }
+    .btn-secondary {
+      background: #23263a;
+      color: #e5e7eb;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .dana-box {
+      background: #131522;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dana-label { font-size: 10.5px; color: #9ca3af; letter-spacing: 1px; margin-bottom: 4px; }
+    .dana-num { font-size: 17px; font-weight: 700; letter-spacing: 0.5px; }
+    .btn-copy {
+      background: #4f46e5;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-copy:active { transform: scale(0.96); }
+    .footer {
+      margin-top: 24px;
+      font-size: 11.5px;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="bg.jpg" alt="Profil" class="avatar">
+  <div class="store-name">Chris'cy <span class="verified">✓</span></div>
+  <div class="subtitle">Official Payment Page</div>
+
+  <div class="card">
+    <div class="card-title">QRIS Payment</div>
+    <div class="card-desc">Scan QRIS di bawah untuk melakukan pembayaran.</div>
+
+    <div class="qris-box">
+      <img src="qris.jpg" alt="QRIS Farros kece, Mainan">
+    </div>
+
+    <div class="btn-group">
+      <a href="qris.jpg" target="_blank" class="btn btn-primary">Lihat QRIS</a>
+      <a href="qris.jpg" download="QRIS-Farros-Kece.jpg" class="btn btn-secondary">Download QRIS</a>
+    </div>
+
+    <div class="dana-box">
+      <div>
+        <div class="dana-label">PEMBAYARAN DANA</div>
+        <div class="dana-num" id="nomorDana">085606685879</div>
+      </div>
+      <button class="btn-copy" id="tombolSalin" onclick="salinNomor()">Salin</button>
+    </div>
+  </div>
+
+  <div class="footer">© 2026 Chris'cy Store • Terima kasih sudah bertransaksi</div>
+
+  <script>
+    function salinNomor() {
+      const nomor = document.getElementById('nomorDana').innerText;
+      navigator.clipboard.writeText(nomor);
+      const btn = document.getElementById('tombolSalin');
+      btn.innerText = 'Tersalin!';
+      btn.style.background = '#10b981';
+      setTimeout(() => {
+        btn.innerText = 'Salin';
+        btn.style.background = '#4f46e5';
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
